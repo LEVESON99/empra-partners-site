@@ -1208,174 +1208,153 @@ h2 em {
 
 .raise-input:focus { outline: none; }
 
-/* Step 5 path grid */
-.path-grid {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 32px;
-  align-items: stretch;
+/* Step 5 finale */
+.finale-shell {
   margin: 32px 0 36px;
-}
-
-@media (max-width: 900px) {
-  .path-grid { grid-template-columns: 1fr; }
-}
-
-.path-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   position: relative;
-  min-width: 32px;
 }
 
-.path-divider::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: var(--line);
-}
-
-.path-divider span {
-  position: relative;
-  z-index: 2;
-  background: var(--bg);
-  padding: 8px 0;
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-mute);
-}
-
-@media (max-width: 900px) {
-  .path-divider { min-height: 24px; }
-  .path-divider::before { top: 50%; bottom: auto; left: 0; right: 0; width: 100%; height: 1px; }
-}
-
-.path-card {
+.finale-stage {
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 36px 32px;
-  display: flex;
-  flex-direction: column;
+  border-radius: 12px;
+  padding: 40px 36px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.path-card-dark {
+.finale-stage-booking {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
+  display: none;
 }
 
-.path-card-dark h4 { color: var(--bg); }
-.path-card-dark .path-desc { color: rgba(255,255,255,0.7); }
-
-.path-num {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 13px;
-  color: var(--accent);
-  margin-bottom: 20px;
-  letter-spacing: 0.06em;
+.finale-stage-booking.visible {
+  display: block;
+  animation: finaleReveal 0.5s ease both;
 }
 
-.path-card-dark .path-num { color: #D4A5AB; }
-
-.path-card h4 {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin-bottom: 14px;
-  color: var(--ink);
+@keyframes finaleReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.path-desc {
-  font-size: 14px;
-  color: var(--ink-soft);
-  line-height: 1.65;
+.finale-stage.fading {
+  display: none;
+}
+
+.finale-step-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 100px;
   margin-bottom: 24px;
 }
 
-.path-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg);
-  color: var(--ink);
-  padding: 14px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-family: var(--body);
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  align-self: flex-start;
+.finale-stage-booking .finale-step-marker {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
 }
 
-.path-cta:hover {
-  background: #D4A5AB;
-  transform: translateY(-1px);
+.finale-step-marker.complete {
+  border-color: var(--accent);
+  background: rgba(107, 44, 57, 0.10);
 }
 
-.path-cta svg { transition: transform 0.2s ease; }
-.path-cta:hover svg { transform: translateX(3px); }
-
-.path-card-meta {
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.finale-stage-booking .finale-step-marker.complete {
+  background: rgba(212, 165, 171, 0.15);
+  border-color: rgba(212, 165, 171, 0.4);
 }
 
-.meta-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
+.finale-step-marker.active .marker-num {
+  color: #D4A5AB;
 }
 
-.meta-label {
-  color: rgba(255,255,255,0.5);
+.marker-num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-mute);
   letter-spacing: 0.04em;
 }
 
-.meta-value {
-  color: var(--bg);
+.finale-stage-booking .marker-num {
+  color: rgba(255,255,255,0.5);
+}
+
+.marker-text {
+  font-size: 12px;
   font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* Form within path card */
-.path-card .form-row {
-  margin-bottom: 14px;
+.finale-stage-booking .marker-text {
+  color: var(--bg);
 }
 
-.path-card .form-row label {
+.marker-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.finale-stage-booking .marker-check {
+  background: #D4A5AB;
+  color: var(--ink);
+}
+
+/* Stage A: Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 700px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+.form-row {
+  margin: 0;
+}
+
+.form-row label {
   display: block;
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-mute);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
-.path-card .form-row input {
+.form-row input {
   width: 100%;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-family: var(--body);
   font-size: 14px;
   color: var(--ink);
   transition: border-color 0.2s ease;
 }
 
-.path-card .form-row input:focus {
+.form-row input:focus {
   outline: none;
   border-color: var(--accent);
   background: var(--bg);
@@ -1387,63 +1366,137 @@ h2 em {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 24px;
+  padding: 16px 28px;
   background: var(--ink);
   color: var(--bg);
   border: none;
   border-radius: 100px;
   font-family: var(--body);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  margin-top: 8px;
   transition: all 0.2s ease;
 }
 
-.form-submit:hover {
+.form-submit:hover:not(:disabled) {
   background: var(--accent);
   transform: translateY(-1px);
 }
 
-.form-submit svg { transition: transform 0.2s ease; }
-.form-submit:hover svg { transform: translateX(3px); }
-
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 24px 0;
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.form-success.visible { display: block; }
+.form-submit svg { transition: transform 0.2s ease; }
+.form-submit:hover:not(:disabled) svg { transform: translateX(3px); }
 
-.success-mark {
-  width: 56px;
-  height: 56px;
+.finale-fineprint {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+}
+
+.finale-stage-booking .finale-fineprint {
+  color: rgba(255,255,255,0.45);
+}
+
+/* Stage B: Booking */
+.booking-confirm {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 32px 0 32px;
+  padding: 24px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.confirm-mark {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--accent);
-  color: var(--bg);
+  background: #D4A5AB;
+  color: var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
 }
 
-.form-success h4 {
+.confirm-content h4 {
   font-family: var(--display);
   font-size: 22px;
   font-weight: 400;
   letter-spacing: -0.01em;
-  margin-bottom: 10px;
-  color: var(--ink);
+  margin-bottom: 8px;
+  color: var(--bg);
 }
 
-.form-success p {
+.confirm-content p {
   font-size: 14px;
-  color: var(--ink-soft);
-  line-height: 1.5;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.55;
 }
+
+.booking-cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 700px) {
+  .booking-cta-row { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.booking-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 28px;
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: var(--body);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.booking-cta-primary:hover {
+  background: #D4A5AB;
+  transform: translateY(-1px);
+}
+
+.booking-cta-primary svg { transition: transform 0.2s ease; }
+.booking-cta-primary:hover svg { transform: translateX(3px); }
+
+.booking-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.booking-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.booking-meta-row span:first-child { color: rgba(255,255,255,0.5); text-transform: uppercase; }
+.booking-meta-row span:last-child { color: var(--bg); font-weight: 500; }
 
 .form-hidden { display: none; }
 
@@ -1640,7 +1693,7 @@ footer {
         <div class="progress-step" data-step="2"><span class="progress-num">02</span><span class="progress-label">Stage</span></div>
         <div class="progress-step" data-step="3"><span class="progress-num">03</span><span class="progress-label">Sector</span></div>
         <div class="progress-step" data-step="4"><span class="progress-num">04</span><span class="progress-label">Round size</span></div>
-        <div class="progress-step" data-step="5"><span class="progress-num">05</span><span class="progress-label">Next steps</span></div>
+        <div class="progress-step" data-step="5"><span class="progress-num">05</span><span class="progress-label">Book call</span></div>
       </div>
 
       <!-- ===== STEP 1: GEOGRAPHY ===== -->
@@ -1817,78 +1870,85 @@ footer {
         </div>
       </div>
 
-      <!-- ===== STEP 5: RESULT - TWO PATHS ===== -->
+      <!-- ===== STEP 5: RESULT - SUBMIT + BOOK ===== -->
       <div class="builder-step" data-step="5">
 
-        <div class="step-eyebrow">Your raise</div>
-        <h3>Two ways to take this <em>forward</em>.</h3>
-        <p class="builder-desc">Tell us where to send your high-level analysis, or skip straight to a 15-minute call where we can run through the numbers with you directly.</p>
+        <div class="step-eyebrow">Final step</div>
+        <h3>Get your <em>analysis</em>. Book a 15-minute call.</h3>
+        <p class="builder-desc">Send us your details, then book a time. We will run through your raise live, walk you through the investor landscape we would map for you, and answer questions on the spot.</p>
 
-        <div class="path-grid">
+        <div class="finale-shell">
 
-          <div class="path-card">
-            <div class="path-num">01</div>
-            <h4>High-level analysis by email</h4>
-            <p class="path-desc">Send us your details and we will review your raise against our network. You will get a written analysis covering the investor pool that fits your criteria, the gaps and opportunities we see, and a recommendation on next steps. Delivered within 3 working days.</p>
+          <!-- Stage A: Form -->
+          <div class="finale-stage" id="finale-form-stage">
+            <div class="finale-step-marker">
+              <span class="marker-num">01</span>
+              <span class="marker-text">Your details</span>
+            </div>
 
             <form id="map-form" onsubmit="return false;">
-              <div class="form-row">
-                <label for="form-name">Name</label>
-                <input type="text" id="form-name" required>
+              <div class="form-grid">
+                <div class="form-row">
+                  <label for="form-name">Name</label>
+                  <input type="text" id="form-name" required>
+                </div>
+                <div class="form-row">
+                  <label for="form-email">Email</label>
+                  <input type="email" id="form-email" required>
+                </div>
+                <div class="form-row">
+                  <label for="form-company">Company</label>
+                  <input type="text" id="form-company" required>
+                </div>
+                <div class="form-row">
+                  <label for="form-website">Website (optional)</label>
+                  <input type="url" id="form-website" placeholder="https://">
+                </div>
               </div>
-              <div class="form-row">
-                <label for="form-email">Email</label>
-                <input type="email" id="form-email" required>
-              </div>
-              <div class="form-row">
-                <label for="form-company">Company</label>
-                <input type="text" id="form-company" required>
-              </div>
-              <div class="form-row">
-                <label for="form-website">Website (optional)</label>
-                <input type="url" id="form-website" placeholder="https://">
-              </div>
+
               <button type="submit" class="form-submit">
-                Send me the analysis
+                Continue to booking
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </button>
+
+              <p class="finale-fineprint">Submitting your details unlocks the calendar booking. We will email a copy of your selections to you and to our team.</p>
             </form>
-
-            <div class="form-success" id="form-success">
-              <div class="success-mark">✓</div>
-              <h4>Your analysis is on its way.</h4>
-              <p>We will review your raise and send a written analysis within 3 working days.</p>
-            </div>
           </div>
 
-          <div class="path-divider">
-            <span>or</span>
-          </div>
+          <!-- Stage B: Calendar booking -->
+          <div class="finale-stage finale-stage-booking" id="finale-booking-stage">
+            <div class="finale-step-marker complete">
+              <span class="marker-num">01</span>
+              <span class="marker-text">Details received</span>
+              <span class="marker-check">&#10003;</span>
+            </div>
 
-          <div class="path-card path-card-dark">
-            <div class="path-num">02</div>
-            <h4>Book a 15-minute call</h4>
-            <p class="path-desc">Skip the analysis and book a call directly. We will run through your raise live, talk through the investor landscape we would map for you, and answer any questions on the spot.</p>
+            <div class="finale-step-marker active">
+              <span class="marker-num">02</span>
+              <span class="marker-text">Book your 15-minute call</span>
+            </div>
 
-            <a href="https://calendar.app.google/osNAoKg4weXvFNv59" target="_blank" class="path-cta">
-              Book a call now
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </a>
-
-            <div class="path-card-meta">
-              <div class="meta-row">
-                <span class="meta-label">Length</span>
-                <span class="meta-value">15 minutes</span>
-              </div>
-              <div class="meta-row">
-                <span class="meta-label">Format</span>
-                <span class="meta-value">Google Meet</span>
-              </div>
-              <div class="meta-row">
-                <span class="meta-label">Cost</span>
-                <span class="meta-value">Free, no hard sell</span>
+            <div class="booking-confirm">
+              <div class="confirm-mark">&#10003;</div>
+              <div class="confirm-content">
+                <h4>Thanks <span id="confirm-name">George</span>. Your details are with us.</h4>
+                <p>Pick a time below for a 15-minute call. We will run through your raise, walk you through the investor landscape we would map for you, and answer any questions on the spot.</p>
               </div>
             </div>
+
+            <div class="booking-cta-row">
+              <a href="https://calendar.app.google/osNAoKg4weXvFNv59" target="_blank" class="booking-cta-primary">
+                Open booking calendar
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+              <div class="booking-meta">
+                <div class="booking-meta-row"><span>Length</span><span>15 minutes</span></div>
+                <div class="booking-meta-row"><span>Format</span><span>Google Meet</span></div>
+                <div class="booking-meta-row"><span>Cost</span><span>Free, no hard sell</span></div>
+              </div>
+            </div>
+
+            <p class="finale-fineprint">Calendar opens in a new tab. Once booked, you will receive a confirmation email with the meeting link.</p>
           </div>
 
         </div>
@@ -1902,7 +1962,6 @@ footer {
       </div>
 
 </div>
-  </div>
 </section>
 
 <!-- ============ WHO IT'S FOR ============ -->
@@ -2271,28 +2330,30 @@ footer {
       const website = document.getElementById('form-website').value;
       if (!name || !email || !company) return;
 
-      // Build FormData (supports file upload)
+      const submitBtn = form.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Submitting...';
+
+      // Build FormData (Personal plan supports file uploads)
       const fd = new FormData();
       fd.append('name', name);
       fd.append('email', email);
       fd.append('company', company);
-      fd.append('website', website);
+      fd.append('website', website || '(not provided)');
       fd.append('regions', Array.from(state.regions).map(r => REGION_DATA[r].name).join(', '));
       fd.append('stage', STAGE_LABELS[state.stage] || '');
       fd.append('sectors', Array.from(state.sectors).map(s => SECTOR_LABELS[s]).join(', '));
-      fd.append('sector_context', state.sectorContext);
+      fd.append('sector_context', state.sectorContext || '(none provided)');
       fd.append('raise_amount', state.raiseAmount);
-      fd.append('raise_context', state.raiseContext);
+      fd.append('raise_context', state.raiseContext || '(none provided)');
       if (state.deckFile) fd.append('deck', state.deckFile);
       if (state.voiceBlob) {
         fd.append('voice_note', state.voiceBlob, 'voice-note.webm');
       }
 
       try {
-        // Submit to Formspree
         if (FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
-          // Endpoint not configured yet - log to console
-          console.warn('FORMSPREE_ENDPOINT not configured. Submission would have been:');
+          console.warn('FORMSPREE_ENDPOINT not configured.');
           for (const [key, val] of fd.entries()) console.log(key, val);
         } else {
           const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -2300,14 +2361,25 @@ footer {
             body: fd,
             headers: { 'Accept': 'application/json' }
           });
-          if (!response.ok) throw new Error('Submission failed');
+          if (!response.ok) {
+            const errText = await response.text();
+            console.error('Formspree error response:', errText);
+            throw new Error('Submission failed');
+          }
         }
 
-        // Show success state
-        form.classList.add('form-hidden');
-        document.getElementById('form-success').classList.add('visible');
+        // Inject name into the booking confirm message
+        const confirmName = document.getElementById('confirm-name');
+        if (confirmName) confirmName.textContent = name.split(' ')[0] || name;
+
+        // Swap stages: hide form stage, show booking stage
+        document.getElementById('finale-form-stage').classList.add('fading');
+        document.getElementById('finale-booking-stage').classList.add('visible');
+
       } catch (err) {
         console.error('Submission error:', err);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Continue to booking <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
         alert('Something went wrong sending your details. Please try again or email george@empra.io directly.');
       }
     });
