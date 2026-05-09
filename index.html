@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Empra Partners — Investor outreach for high-growth startups</title>
+<title>Empra Partners - Investor outreach for high-growth startups</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 48px;
+  padding: 10px 48px;
   max-width: 1280px;
   margin: 0 auto;
 }
@@ -113,13 +113,13 @@ nav {
 .nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
 
 @media (max-width: 768px) {
-  .nav-inner { padding: 16px 24px; }
+  .nav-inner { padding: 8px 24px; }
   .nav-links a:not(.nav-cta) { display: none; }
 }
 
 /* ---------- HERO ---------- */
 .hero {
-  padding: 140px 0 120px;
+  padding: 50px 0 120px;
   position: relative;
   overflow: hidden;
 }
@@ -132,6 +132,133 @@ nav {
   height: 100%;
   background: radial-gradient(circle at 70% 50%, rgba(107, 44, 57, 0.04), transparent 60%);
   pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: clamp(40px, 4.8vw, 64px);
+  max-width: 100%;
+}
+
+.hero-content .hero-sub {
+  font-size: 18px;
+  max-width: 540px;
+}
+
+.hero-globe {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .hero-globe { max-width: 480px; margin: 0 auto; }
+}
+
+#hero-globe-svg {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+#hero-globe-svg:active { cursor: grabbing; }
+
+#hero-globe-svg .ocean { fill: var(--bg); }
+#hero-globe-svg .graticule {
+  fill: none;
+  stroke: rgba(107, 44, 57, 0.10);
+  stroke-width: 0.5;
+}
+#hero-globe-svg .land {
+  fill: #EAE3DC;
+  stroke: #C4B7AE;
+  stroke-width: 0.5;
+  stroke-linejoin: round;
+}
+#hero-globe-svg .land.region {
+  fill: rgba(107, 44, 57, 0.22);
+  stroke: var(--accent);
+  stroke-width: 0.6;
+  transition: fill 0.3s ease;
+}
+#hero-globe-svg .land.region.active {
+  fill: rgba(107, 44, 57, 0.50);
+}
+#hero-globe-svg .sphere-outline {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.2;
+  opacity: 0.45;
+}
+#hero-globe-svg .sphere-glow {
+  fill: var(--accent);
+  opacity: 0.04;
+}
+#hero-globe-svg .pin-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+#hero-globe-svg .pin-dot {
+  fill: var(--accent);
+}
+
+.hero-globe-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  background: rgba(250, 249, 246, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.caption-num {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.caption-num em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.caption-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -874,6 +1001,7 @@ footer {
     <div class="nav-links">
       <a href="#founders">Founders</a>
       <a href="#investors">Investors</a>
+      <a href="/investor-map">Investor Map</a>
       <a href="#team">Team</a>
       <a href="#contact" class="nav-cta">Get started</a>
     </div>
@@ -883,6 +1011,8 @@ footer {
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
     <a href="almond-case-study.html" class="latest-pill">
       <span class="latest-dot"></span>
       <span class="latest-label">Latest</span>
@@ -899,7 +1029,16 @@ footer {
       </a>
       <a href="#founders" class="btn-secondary">How it works</a>
     </div>
-  </div>
+        </div>
+      <div class="hero-globe">
+        <svg id="hero-globe-svg" xmlns="http://www.w3.org/2000/svg" aria-label="Global investor network"></svg>
+        <div class="hero-globe-caption">
+          <span class="caption-num">25,000<em>+</em></span>
+          <span class="caption-label">Active investors · 4 regions</span>
+        </div>
+      </div>
+    </div>
+    </div>
 </section>
 
 <!-- ============ CREDIBILITY STRIP ============ -->
@@ -1037,22 +1176,22 @@ footer {
 
     <div class="criteria-grid">
       <div class="criterion">
-        <div class="criterion-num">— 01</div>
+        <div class="criterion-num">- 01</div>
         <h3>Investor-ready only</h3>
         <p>Every company is vetted with strong pitches and solid numbers. No half-formed decks, no early conversations.</p>
       </div>
       <div class="criterion">
-        <div class="criterion-num">— 02</div>
+        <div class="criterion-num">- 02</div>
         <h3>Serious founders</h3>
         <p>We only work with founders who have personal skin in the game and a clear path to the round closing.</p>
       </div>
       <div class="criterion">
-        <div class="criterion-num">— 03</div>
+        <div class="criterion-num">- 03</div>
         <h3>High-quality sourcing</h3>
         <p>Deal flow comes from direct sourcing, founder networks, and investor referrals. Not a top-of-funnel filter.</p>
       </div>
       <div class="criterion">
-        <div class="criterion-num">— 04</div>
+        <div class="criterion-num">- 04</div>
         <h3>Sector-focused</h3>
         <p>Primarily B2B SaaS, AI, fintech, climate tech, and deep tech, with selective coverage of exceptional opportunities elsewhere.</p>
       </div>
@@ -1099,7 +1238,7 @@ footer {
     <!-- TESTIMONIAL: DRAFT - pending Adam Swartzbaugh's approval before going live -->
     <div class="testimonial">
       <p>"George and the Empra team ran our entire investor outreach. They built the shortlist, made the introductions, and chased every conversation through to a decision. We closed $1.2M with investors we wouldn't have reached on our own - and I got to spend my time building the company instead of working a CRM."</p>
-      <div class="testimonial-attr">— Adam Swartzbaugh, Co-Founder &amp; CEO, Almond FinTech</div>
+      <div class="testimonial-attr">- Adam Swartzbaugh, Co-Founder &amp; CEO, Almond FinTech</div>
     </div>
   </div>
 </section>
@@ -1212,5 +1351,166 @@ footer {
   populate('track-mena',   'mena');
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+(function() {
+  const svgEl = document.getElementById('hero-globe-svg');
+  if (!svgEl) return;
+  const stage = svgEl.parentElement;
+
+  const REGIONS = {
+    europe: {
+      countries: new Set(['008','020','040','056','070','100','112','191','196','203','208','233','246','250','268','276','292','300','336','348','352','372','380','428','438','440','442','470','492','498','499','504','528','578','579','616','620','642','643','674','688','703','705','724','752','756','804','807','826','831','832','833']),
+      pins: [[51.5,-0.1],[48.85,2.35],[52.52,13.4],[52.37,4.9],[59.33,18.07],[47.37,8.55],[53.35,-6.26],[41.39,2.17],[45.46,9.19],[55.68,12.57]]
+    },
+    namerica: {
+      countries: new Set(['124','840','484']),
+      pins: [[37.77,-122.42],[40.71,-74.01],[42.36,-71.06],[47.61,-122.33],[30.27,-97.74],[41.88,-87.63],[34.05,-118.24],[25.76,-80.19],[43.65,-79.38]]
+    },
+    apac: {
+      countries: new Set(['036','050','064','096','116','156','158','356','360','392','398','408','410','417','418','458','462','496','524','554','586','608','626','702','704','764','860','762']),
+      pins: [[1.35,103.82],[22.32,114.17],[35.68,139.69],[37.57,126.98],[31.23,121.47],[-33.87,151.21],[19.08,72.88],[12.97,77.59],[-6.21,106.85]]
+    },
+    mena: {
+      countries: new Set(['012','048','072','084','120','144','275','364','368','376','400','414','422','434','504','512','729','732','760','764','784','788','792','818','887']),
+      pins: [[25.20,55.27],[24.47,54.37],[24.71,46.68],[30.04,31.24],[31.95,35.93],[32.09,34.78]]
+    }
+  };
+
+  function getRegionFor(id) {
+    for (const [k, r] of Object.entries(REGIONS)) if (r.countries.has(id)) return k;
+    return null;
+  }
+
+  function getSize() {
+    const rect = stage.getBoundingClientRect();
+    return Math.min(rect.width, rect.height);
+  }
+  let size = getSize();
+  const svg = d3.select(svgEl).attr('viewBox', `0 0 ${size} ${size}`);
+
+  const projection = d3.geoOrthographic()
+    .scale(size * 0.46)
+    .translate([size / 2, size / 2])
+    .clipAngle(90)
+    .rotate([-10, -25, 0]);
+
+  const path = d3.geoPath(projection);
+
+  svg.append('circle').attr('class', 'sphere-glow').attr('cx', size/2).attr('cy', size/2).attr('r', size*0.50);
+  const oceanCircle = svg.append('circle').attr('class', 'ocean').attr('cx', size/2).attr('cy', size/2).attr('r', size*0.46);
+  const graticuleG = svg.append('g');
+  const landG = svg.append('g');
+  const pinsG = svg.append('g');
+  const sphereOutline = svg.append('circle').attr('class', 'sphere-outline').attr('cx', size/2).attr('cy', size/2).attr('r', size*0.46);
+
+  graticuleG.append('path').datum(d3.geoGraticule().step([15,15])()).attr('class', 'graticule').attr('d', path);
+
+  let countries = null;
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
+    countries = topojson.feature(world, world.objects.countries).features;
+    landG.selectAll('path.land')
+      .data(countries)
+      .join('path')
+      .attr('class', d => {
+        const region = getRegionFor(d.id);
+        return region ? `land region region-${region}` : 'land';
+      })
+      .attr('data-region', d => getRegionFor(d.id))
+      .attr('d', path);
+    drawPins();
+  }).catch(err => console.error('Globe atlas load failed:', err));
+
+  function drawPins() {
+    pinsG.selectAll('*').remove();
+    Object.values(REGIONS).forEach(r => {
+      r.pins.forEach(([lat, lng]) => {
+        if (!isVisible(lng, lat)) return;
+        const [x, y] = projection([lng, lat]);
+        pinsG.append('circle').attr('class', 'pin-ring').attr('cx', x).attr('cy', y).attr('r', 4);
+        pinsG.append('circle').attr('class', 'pin-dot').attr('cx', x).attr('cy', y).attr('r', 1.5);
+      });
+    });
+  }
+
+  function isVisible(lng, lat) {
+    const rot = projection.rotate();
+    const cosc = Math.sin(rot[1]*Math.PI/180)*Math.sin(lat*Math.PI/180) +
+                 Math.cos(rot[1]*Math.PI/180)*Math.cos(lat*Math.PI/180)*Math.cos((lng+rot[0])*Math.PI/180);
+    return cosc >= 0;
+  }
+
+  function redraw() {
+    landG.selectAll('path.land').attr('d', path);
+    graticuleG.select('path').attr('d', path);
+    drawPins();
+  }
+
+  let isDragging = false;
+  const sensitivity = 75;
+  const drag = d3.drag()
+    .on('start', () => { isDragging = true; })
+    .on('drag', (event) => {
+      const r = projection.rotate();
+      const k = sensitivity / projection.scale();
+      projection.rotate([r[0] + event.dx*k, Math.max(-90, Math.min(90, r[1] - event.dy*k)), r[2]]);
+      redraw();
+    })
+    .on('end', () => { isDragging = false; });
+  svg.call(drag);
+
+  let autoRotate = true;
+  let lastT = Date.now();
+  function tick() {
+    if (autoRotate && !isDragging) {
+      const now = Date.now();
+      const dt = now - lastT;
+      lastT = now;
+      const r = projection.rotate();
+      projection.rotate([r[0] + dt*0.012, r[1], r[2]]);
+      redraw();
+    } else {
+      lastT = Date.now();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  svg.on('mousemove', function(event) {
+    if (!countries) return;
+    const [mx, my] = d3.pointer(event);
+    const inv = projection.invert([mx, my]);
+    if (!inv) return;
+    let found = null;
+    for (const c of countries) {
+      const region = getRegionFor(c.id);
+      if (!region) continue;
+      if (d3.geoContains(c, inv)) { found = region; break; }
+    }
+    landG.selectAll('path.land').classed('active', false);
+    if (found) {
+      landG.selectAll(`path[data-region="${found}"]`).classed('active', true);
+    }
+  });
+  svg.on('mouseenter', () => { autoRotate = false; });
+  svg.on('mouseleave', () => {
+    autoRotate = true;
+    landG.selectAll('path.land').classed('active', false);
+  });
+
+  window.addEventListener('resize', () => {
+    const ns = getSize();
+    if (ns === size) return;
+    size = ns;
+    svg.attr('viewBox', `0 0 ${size} ${size}`);
+    projection.scale(size*0.46).translate([size/2, size/2]);
+    oceanCircle.attr('cx', size/2).attr('cy', size/2).attr('r', size*0.46);
+    sphereOutline.attr('cx', size/2).attr('cy', size/2).attr('r', size*0.46);
+    svg.select('.sphere-glow').attr('cx', size/2).attr('cy', size/2).attr('r', size*0.50);
+    redraw();
+  });
+})();
+</script>
 </body>
 </html>
